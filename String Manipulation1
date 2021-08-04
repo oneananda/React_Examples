@@ -1,0 +1,108 @@
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import Hello from './Hello';
+
+import './style.css';
+
+interface AppProps {}
+interface AppState {
+  name: string;
+  input: string;
+  result: string;
+}
+
+class App extends Component<AppProps, AppState> {
+  bResult: any;
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'React Programming Coding Challenge: String Manipulation Coding Challenge - 1',
+      input: '',
+      result: 'Result: No Result, input string to process'
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.convertClicked = this.convertClicked.bind(this);
+    this.processString = this.processString.bind(this);
+  }
+  convertClicked = (e: any) => {
+    //alert(this.state.result);
+    this.setState({
+      result: this.processString(e)
+    });
+    e.preventDefault();
+  };
+
+  handleChange = (e: any) => {
+    this.setState({
+      input: e.target.value
+    });
+  };
+
+  processString = (e: any) => {
+    let returnValue = '';
+    let splitted = this.state.input.split(' ');
+    //alert(this.state.input);
+    for (let i = 0; i < splitted.length; i++) {
+      returnValue += this.applyLogic(e, splitted[i]);
+      if (i == splitted.length - 1) {
+      } else {
+        returnValue += ' ';
+      }
+    }
+    return returnValue;
+  };
+
+  applyLogic = (e: any, str: string) => {
+    let res = '';
+    for (let i = 0; i < str.length; i++) {
+      if (i == 0) {
+        res += str.charAt(i).toUpperCase();
+      } else if (i == 1) {
+        res += str.charAt(i).toLowerCase();
+      } else if (i % 2 == 0) {
+        res += str.charAt(i).toUpperCase();
+      } else {
+        res += str.charAt(i).toLowerCase();
+      }
+    }
+    return res;
+  };
+
+  render() {
+    return (
+      <div>
+        <Hello name={this.state.name} />
+        <p>String Manipulation Coding challenges using React-Typescript</p>
+        <div>
+          <p>Given a string may contain spaces, convert them to</p>
+          <ul>
+            <li>All first character caps</li>
+            <li>All Even numbers caps</li>
+            <li>All Odd Numbers small</li>
+            <li>Consider the strings are starting with 0 - Even number</li>
+          </ul>
+        </div>
+
+        <div>
+          <form>
+            <label>
+              Enter the Text:
+              <input
+                type="text"
+                value={this.state.input}
+                onChange={this.handleChange}
+                name="inputValue"
+              />
+            </label>
+            {/* <input type="submit" value="Submit" /> */}
+            <button onClick={this.convertClicked}>Convert!</button>
+            <br />
+            <label>{this.state.result}</label>
+          </form>
+        </div>
+      </div>
+    );
+  }
+}
+
+render(<App />, document.getElementById('root'));
