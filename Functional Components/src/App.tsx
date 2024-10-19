@@ -9,6 +9,9 @@ function App() {
     // Toggle 
     const [isOn, setIsOn] = useState(false);
 
+
+    const [user, setUser] = useState(null);
+
     const toggleSwitch = () => {
         setIsOn((isOn) => !isOn);
     }
@@ -21,6 +24,11 @@ function App() {
         document.title = `Count: ${count}`;
     }, [count]);
 
+    useEffect(() => {
+        fetch('https://jsonplaceholder.typicode.com/users/1')
+            .then(response => response.json())
+            .then(data => setUser(data));
+    }, []); //
 
     return (
         <>
@@ -52,6 +60,23 @@ function App() {
                 <button className={getToggleClass()} onClick={toggleSwitch}>
                     {isOn ? 'Turn Off' : 'Turn On'}
                 </button>
+            </div>
+            <div>
+                <h3>Explanation:</h3>
+                <p>
+                    useState manages the isOn state.
+                </p>
+                <p> toggleSwitch toggles the state between true and false.</p>
+            </div>
+
+            <div>
+                <h3>Component with useEffect Hook by calling an API:</h3>
+                <h4>User details fetched by API</h4>
+                <div>
+                    <h4>{user.name}</h4>
+                    <p>Email: {user.email}</p>
+                    <p>Phone: {user.phone}</p>
+                </div>
             </div>
         </>
     )
