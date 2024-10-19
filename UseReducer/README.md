@@ -1,5 +1,7 @@
 # React + Vite
 
+(usereducer-demo-url)[https://stackblitz.com/edit/oneananda-usereducer-demo?file=src%2FApp.jsx&terminal=dev]
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
