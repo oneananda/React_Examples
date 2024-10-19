@@ -13,6 +13,10 @@ function App() {
         setIsOn((isOn) => !isOn);
     }
 
+    const getToggleClass = () => {
+        return isOn ? 'green' : 'red'
+    };
+
     useEffect(() => {
         document.title = `Count: ${count}`;
     }, [count]);
@@ -45,7 +49,7 @@ function App() {
             <h2>Toggle</h2>
             <div>
                 <p>The light is {isOn ? 'On' : 'Off'}</p>
-                <button onClick={toggleSwitch}>
+                <button className={getToggleClass()} onClick={toggleSwitch}>
                     {isOn ? 'Turn Off' : 'Turn On'}
                 </button>
             </div>
