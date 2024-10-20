@@ -11,6 +11,8 @@ const counterReducer = (stated, dispatchd) => {
       return { countd: stated.countd - 1 };
     case 'reset':
       return { countd: 0 };
+    case 'double':
+      return { countd: stated.countd * stated.countd };
     default:
       return stated;
   }
@@ -45,7 +47,9 @@ function App() {
               Decrement
             </button>
             <button onClick={() => dispatchd({ typed: 'reset' })}>Reset</button>
-
+            <button onClick={() => dispatchd({ typed: 'double' })}>
+              Double
+            </button>
           </div>
         </div>
       </div>
