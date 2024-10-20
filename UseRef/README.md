@@ -1,50 +1,19 @@
-# React + TypeScript + Vite
+# React Focus Toggle Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[useRef Demo](https://stackblitz.com/edit/oneananda-useref-demo?file=src%2FApp.tsx&terminal=dev)
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project is a simple React application created using Vite. It demonstrates how to programmatically focus and toggle between an input field and a button using `useRef` and `useState` hooks. The app allows users to click a button to either focus the input or remove the focus, depending on the state. The application showcases React's state management and event handling in conjunction with direct DOM manipulation.
 
-## Expanding the ESLint configuration
+## Key Concepts
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### useRef Hook
+The `useRef` hook is used to get direct references to DOM elements in React. It allows us to access the actual DOM elements and interact with them directly, without triggering re-renders. In this app, we use `useRef` to access both the input field and the button elements to focus them when necessary.
 
-- Configure the top-level `parserOptions` property like this:
+### useState Hook
+`useState` is used to manage the toggling behavior of the focus state. It keeps track of whether the input field is focused or not, and based on this state, we dynamically change the label of the button and control which element receives focus.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### Asynchronous State Updates in React
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+A key point to understand in this project is how React handles state updates asynchronously. This is crucial when managing the focus behavior between the input and button elements.
