@@ -1,24 +1,25 @@
-import { React, useState,useReducer  } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { React, useState, useReducer } from 'react';
+import reactLogo from './assets/react.svg';
+import viteLogo from '/vite.svg';
+import './App.css';
 
-const counterReducer = (state, action) => {
-  switch (action.type) {
+const counterReducer = (stated, dispatchd) => {
+  switch (dispatchd.typed) {
     case 'increment':
-      return { count: state.count + 1 };
+      return { countd: stated.countd + 1 };
     case 'decrement':
-      return { count: state.count - 1 };
+      return { countd: stated.countd - 1 };
+    case 'reset':
+      return { countd: 0 };
     default:
-      return state;
+      return stated;
   }
 };
 
 function App() {
   const [count, setCount] = useState(0);
   const [type, setType] = useState('');
-  const [state, dispatch] = useReducer(counterReducer, { count: 0 });
-
+  const [stated, dispatchd] = useReducer(counterReducer, { countd: 0 });
 
   return (
     <>
@@ -32,24 +33,27 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-      <div>
-                <h3>Explanation:</h3>
+        <div>
+          <h3>Explanation:</h3>
 
-                <div>
-      <h1>Count: {state.count}</h1>
-      <button onClick={() => dispatch({ type: 'increment' })}>Increment</button>
-      <button onClick={() => dispatch({ type: 'decrement' })}>Decrement</button>
-    </div>
+          <div>
+            <h1>Count: {stated.countd}</h1>
+            <button onClick={() => dispatchd({ typed: 'increment' })}>
+              Increment
+            </button>
+            <button onClick={() => dispatchd({ typed: 'decrement' })}>
+              Decrement
+            </button>
+            <button onClick={() => dispatchd({ typed: 'reset' })}>Reset</button>
 
-            </div>
+          </div>
+        </div>
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-
-
     </>
-  )
+  );
 }
 
-export default App
+export default App;
