@@ -11,8 +11,9 @@ function App() {
     const [isTextFocussed, setIsTextFocussed] = useState(false);
 
     const handleFocus = () => {
-        setIsTextFocussed((isTextFocussed) => !isTextFocussed);
-        isTextFocussed ? buttonEl.current.focus() : inputEl.current.focus();
+        const nextFocusState = !isTextFocussed;
+        setIsTextFocussed(nextFocusState);
+        nextFocusState ? inputEl.current.focus() : buttonEl.current.focus();
     };
 
     return (
