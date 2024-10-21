@@ -11,6 +11,18 @@ function App() {
     const [newPost, setNewPost] = useState({ title: "", body: "" });
     const [editingPost, setEditingPost] = useState(null);
 
+    // Fetch all posts
+    useEffect(() => {
+        axios.get(API_URL)
+            .then(response => {
+                setPosts(response.data);
+            })
+            .catch(error => {
+                console.error("There was an error fetching the posts!", error);
+            });
+    }, []);
+
+
     return (
         <>
             <div>
@@ -22,7 +34,12 @@ function App() {
                 </a>
             </div>
             <h1>Vite + React</h1>
-            <div className="card"></div>
+            <div className="card">
+
+                {/* List of posts */}
+                <h2>Posts</h2>
+
+            </div>
             <p className="read-the-docs">
                 Click on the Vite and React logos to learn more
             </p>
